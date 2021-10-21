@@ -1,0 +1,34 @@
+{
+  "name": "shorturl",
+  "version": "1.0.0",
+  "description": "URL compressor app",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test",
+    "start": "concurrently \"nodemon node Server/index.js\" \"npm run ui\"",
+    "ui": "npm run serve --prefix Web",
+    "build" : "react-scripts build --prefix Web && move ./Web/build ./Server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RevanthNagarajan/ShortURL.git"
+  },
+  "keywords": [
+    "node",
+    "react",
+    "mongo"
+  ],
+  "author": "Revanth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RevanthNagarajan/ShortURL/issues"
+  },
+  "homepage": "https://github.com/RevanthNagarajan/ShortURL#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "concurrently": "^6.3.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.11",
+    "nodemon": "^2.0.14"
+  }
+}

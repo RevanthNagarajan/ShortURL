@@ -1,0 +1,100 @@
+.App {
+  text-align: center;
+}
+
+.AppTitle {
+  font-size: 2em;
+  text-align: left;
+  padding: 1em;
+}
+
+.User {
+  display: inline;
+  float: right;
+  cursor: pointer;
+  width: 2em;
+  height: 2em;
+  position: relative;
+  margin-right: 1em;
+}
+
+.User:hover .UserDrop {
+  display: inline-block;
+  font-size: 0.5em;
+  width: 5em;
+  padding-right: 4em;
+  position: absolute;
+  left: 1px;
+}
+
+.UserDrop {
+  font-size: 0.5em;
+  width: 5em;
+  padding-right: 4em;
+  position: absolute;
+  left: 1px;
+  display: none;
+  top: 30px;
+}
+
+.Container {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  width: 95vw;
+  margin-left: 2.5vw;
+  height: 75vh;
+}
+
+.Count {
+  text-align: left;
+  padding: 2em;
+  font-size: 1.5em;
+}
+
+.UrlList {
+  overflow-y: scroll;
+  height: 60vh;
+}
+
+.UrlListItems {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  width: 90vw;
+  margin-left: 2vw;
+  margin-bottom: 1em;
+  padding: 1.5em;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+
+.UrlData {
+  padding: 0em 7em;
+}
+
+.Clipboard {
+  width: 1em;
+  cursor: pointer;
+}
+
+.CreateURL {
+  float: right;
+  display: inline;
+}
+
+button {
+  background: white;
+  border: 1px solid;
+  padding: 1em;
+  font-size: 12px;
+}
+
+.FormElement {
+  padding: 10px;
+}
+
+.FormTitle {
+  margin-bottom: 10px;
+}
+
+.CreateUrlButton {
+  margin : 10px;
+  padding: 0.5em 1em !important;
+}
