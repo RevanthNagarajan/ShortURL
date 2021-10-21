@@ -1,6 +1,7 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
+const { persistentData } = require('./app/constants/urls.js');
 
 // create express app
 const app = express();
@@ -22,21 +23,24 @@ mongoose.connect(dbConfig.url, {
     useNewUrlParser: true
 }).then(() => {
     console.log("Successfully connected to the database");    
+    mongoose.connection.db.collection('urls').insertMany(persistentData).then(obj => console.log("Data inserted"));
 }).catch(err => {
     console.log('Could not connect to the database. Exiting now...', err);
     process.exit();
 });
 
+
+
 require('./app/routes/url.routes')(app);
+app.use(express.static(__dirname+'/build'));
+// app.get('/', (req, res) => {
+//     console.log("Welcome to url application!")
+//     res.json({"message": "Welcome to url application!"});
+// });
 
 app.get('/', (req, res) => {
-    console.log("Welcome to url application!")
-    res.json({"message": "Welcome to url application!"});
+    res.sendFile(path.resolve(__dirname, './build', 'index.html'));
 });
-
-// app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, '../Web/build', 'index.html'));
-// });
 
 app.listen(3030, function() {
     console.log('listening on 3030')

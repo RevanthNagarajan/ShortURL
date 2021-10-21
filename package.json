@@ -7,7 +7,10 @@
     "test": "npm run test",
     "start": "concurrently \"nodemon node Server/index.js\" \"npm run ui\"",
     "ui": "npm run serve --prefix Web",
-    "build" : "react-scripts build --prefix Web && move ./Web/build ./Server"
+    "build" : "npm run build --prefix Web && mv ./Web/build ./Server",
+    "docker-build" : "npm run build --prefix Web",
+    "serve" : "node Server/index.js",
+    "install": "npm install --prefix Web && npm install"
   },
   "repository": {
     "type": "git",
