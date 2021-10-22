@@ -26,3 +26,7 @@
    #### %. ***docker-compose up*** (This will create and runs images built for the SSR app with STEP 2 and starts mongo image)
    #### %. Once the containers are started access the app at http://localhost:3030
    
+##STEP 4 : RUN unit tests
+### Execute the following command from the project folder.
+   #### %. ***npm run test-api*** 
+   #### %.  ***npm run test-ui***
