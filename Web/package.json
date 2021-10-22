@@ -15,7 +15,7 @@
   },
   "scripts": {
     "serve": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "BUILD_PATH='../Server/build' react-scripts build",
     "test": "react-scripts test src/Tests/*.test.js",
     "eject": "react-scripts eject"
   },

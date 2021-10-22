@@ -8,9 +8,8 @@
     "test-ui": "npm run test --prefix Web",
     "start": "concurrently \"nodemon node Server/index.js\" \"npm run ui\"",
     "ui": "npm run serve --prefix Web",
-    "build": "npm run build --prefix Web && mv ./Web/build ./Server",
-    "docker-build": "npm run build --prefix Web",
-    "serve": "node Server/index.js",
+    "build": "npm run build --prefix Web",
+    "serve": "npm run build && node Server/index.js",
     "install": "npm install --prefix Web && npm install"
   },
   "repository": {

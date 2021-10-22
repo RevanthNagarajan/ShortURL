@@ -5,9 +5,7 @@ WORKDIR /usr/src/app
 COPY . .
  
 RUN npm run install && \
-    npm run docker-build
-
-COPY ./Web/build ./Server
+    npm run build
 
 RUN rm -rf ./Web
 
