@@ -4,12 +4,13 @@
   "description": "URL compressor app",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test",
+    "test-api": "mocha Server/tests/*.js --exit --timeout 10000",
+    "test-ui": "npm run test --prefix Web",
     "start": "concurrently \"nodemon node Server/index.js\" \"npm run ui\"",
     "ui": "npm run serve --prefix Web",
-    "build" : "npm run build --prefix Web && mv ./Web/build ./Server",
-    "docker-build" : "npm run build --prefix Web",
-    "serve" : "node Server/index.js",
+    "build": "npm run build --prefix Web && mv ./Web/build ./Server",
+    "docker-build": "npm run build --prefix Web",
+    "serve": "node Server/index.js",
     "install": "npm install --prefix Web && npm install"
   },
   "repository": {
@@ -33,5 +34,11 @@
     "express": "^4.17.1",
     "mongoose": "^6.0.11",
     "nodemon": "^2.0.14"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^12.1.2",
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.1.3"
   }
 }

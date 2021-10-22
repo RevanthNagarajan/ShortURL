@@ -42,6 +42,6 @@ app.get('/', (req, res) => {
     res.sendFile(path.resolve(__dirname, './build', 'index.html'));
 });
 
-app.listen(3030, function() {
+module.exports = app.listen(3030, function() {
     console.log('listening on 3030')
 })
