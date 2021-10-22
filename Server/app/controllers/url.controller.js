@@ -3,8 +3,7 @@ const URLSchema = require('../models/url.model.js');
 exports.findURL = (req, res) => {
     URLSchema.find()
     .then(urls => {
-        console.log(urls)
-        res.send(urls);
+        res.send(urls || []);
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while retrieving urls."
@@ -14,9 +13,7 @@ exports.findURL = (req, res) => {
 
 // Create and Save a new URL
 exports.createURL = (req, res) => {
-    // Validate request
-    console.log(req.body)
-    if(!req.body) {
+    if(!req.body || !req.body.url || !req.body.shortUrl || !req.body.title) {
         return res.status(400).send({
             message: "URL content can not be empty"
         });

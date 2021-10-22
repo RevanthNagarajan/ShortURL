@@ -8,14 +8,20 @@ import { encoder } from './Utils/encoder';
 function App() {
 
   const [urlList,setUrlList] = useState([]);
+  const [loading,setLoading] = useState(false);
   const getParams = { headers : { "accepts":"application/json" }, method : "GET"  };
   const [createForm,updateForm] = useState(new URL());
 
 
   const fetchData = async () => {
+    setLoading(true)
     fetch("/api/getURL",getParams)
     .then(res => res.json())
-    .then((data) => setUrlList(data));
+    .then((data) => { setUrlList(data); setLoading(false)})
+    .catch(err=>{
+      setUrlList([]);
+      setLoading(false);
+    });
   }
 
   const postUrl =  async(body) => {
@@ -28,7 +34,7 @@ function App() {
     fetchData()
   }, []);
 
-  useEffect(()=>{console.log(urlList)},[urlList])
+  useEffect(()=>{},[urlList])
 
   const changeInputs = (field,e) => {
     let newForm = new URL(createForm.title,createForm.description,createForm.url);
@@ -62,7 +68,7 @@ function App() {
         <div className="UserDrop">First User</div>
       </div>
       </div>
-      {urlList.length ? <div className="Container">
+      <div className="Container">
         <div className="Count">{urlList.length} items found
           <div className="CreateURL">
             <Popup trigger={<button> Create </button>} position="left center">
@@ -88,22 +94,31 @@ function App() {
             </Popup>
           </div>
         </div>
-        <div className="UrlList">
-          {
-            urlList.map(url => 
-              <div className="UrlListItems">
-                <span className="UrlData">{url.title}</span>
-                <span className="UrlData">{url.url}</span>
-                <span className="UrlData"><a href={"http://localhost:3030/rd/"+url.shortUrl} target="_blank">http://localhost:3030/rd/{url.shortUrl}&nbsp;</a>
-                  <img className="Clipboard" src="https://img.icons8.com/material-rounded/24/000000/copy.png" onClick={() => {navigator.clipboard.writeText(`http://localhost:3030/rd/${url.shortUrl}`)}}/>
-                </span>
-                <span className="UrlData">{url.createdBy}</span>
-              </div>
-            )
-          }
-        </div>
+        {
+          loading ? <div> Loading Content ...</div> 
+          : 
+          ( urlList.length ? 
+            <div className="UrlList">
+              {
+                urlList.map(url => 
+                  <div className="UrlListItems" key={url._id}>
+                    <span className="UrlData">{url.title}</span>
+                    <span className="UrlData">{url.url}</span>
+                    <span className="UrlData"><a href={"http://localhost:3030/rd/"+url.shortUrl} target="_blank">http://localhost:3030/rd/{url.shortUrl}&nbsp;</a>
+                      <img className="Clipboard" src="https://img.icons8.com/material-rounded/24/000000/copy.png" onClick={() => {navigator.clipboard.writeText(`http://localhost:3030/rd/${url.shortUrl}`)}}/>
+                    </span>
+                    <span className="UrlData">{url.createdBy}</span>
+                  </div>
+                )
+              }
+            </div>
+            :
+            <div>
+              No Records Found. Start compressing URLs!
+            </div>
+          )
+        }
       </div>
-      : null }
     </div>
   );
 }
