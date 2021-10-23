@@ -45,6 +45,7 @@ function App() {
     } else {
       newForm.setDescription(e.target.value)
     }
+    newForm.validate();
     updateForm(newForm);
   }
 
@@ -88,7 +89,7 @@ function App() {
                     <input type="text" value={createForm.url} name="url" onChange={(e) =>  changeInputs('url',e) }></input>
                     <div>{createForm.urlValidation}</div>
                   </div>
-                  <button type="submit" className="CreateUrlButton" onClick={submitUrl}> Submit </button>
+                  <button type="submit" className="CreateUrlButton" onClick={submitUrl} disabled={createForm.titleValidation.length || createForm.urlValidation.length || !createForm.title || !createForm.url}> Submit </button>
                 </div>
               </div>
             </Popup>

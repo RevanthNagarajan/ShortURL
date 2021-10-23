@@ -5,7 +5,6 @@ export class URL {
         this.url = url ? url : "";
         this.titleValidation = "";
         this.urlValidation = "";
-        this.validate();
     }
 
     validate() {
